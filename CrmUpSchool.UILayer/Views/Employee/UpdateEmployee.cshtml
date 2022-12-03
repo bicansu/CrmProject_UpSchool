@@ -1,0 +1,28 @@
+﻿@model Employee
+@{
+    ViewData["Title"] = "UpdateEmployee";
+    Layout = "~/Views/Shared/_CrmLayout.cshtml";
+}
+
+<h1>Personel Güncelleme Sayfası</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="EmployeeID" />
+    <label>Personel Adı</label>
+    <input type="text" asp-for="EmployeeName" class="form-control" />
+    <br />
+    <label>Personel Soyadı</label>
+    <input type="text" asp-for="EmployeeSurname" class="form-control" />
+    <br />
+    <label>Personel Mail</label>
+    <input type="text" asp-for="EmployeeMail" class="form-control" />
+    <br />
+    <label>Personel Görsel</label>
+    <input type="text" asp-for="EmployeeImage" class="form-control" />
+    <br />
+    <label>Personel Departman</label>
+    <input type="text" asp-for="CategoryID" class="form-control" />
+    <br />
+    <button class="btn btn-warning">Personeli Güncelle</button>
+</form>
+

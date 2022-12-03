@@ -1,0 +1,121 @@
+﻿@model AppUser
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_CrmLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Majestic Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/MajesticAdmin-Free-Bootstrap-Admin-Template-master/template/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/MajesticAdmin-Free-Bootstrap-Admin-Template-master/template/vendors/base/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="~/MajesticAdmin-Free-Bootstrap-Admin-Template-master/template/css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="~/MajesticAdmin-Free-Bootstrap-Admin-Template-master/template/images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="content-wrapper d-flex align-items-center auth px-0">
+                <div class="row w-100 mx-0">
+                    <div class="col-lg-4 mx-auto">
+                        <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                            <div class="brand-logo">
+                                <img src="../../images/logo.svg" alt="logo">
+                            </div>                           
+                            <h6 class="font-weight-light">Hemen birkaç adımda üyeliğini tamamla</h6>
+                            <form class="pt-3" method="post">
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Kullanıcı Adınız" asp-for="UserName">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Adınız" asp-for="Name">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Soyadınız" asp-for="Surname">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email" asp-for="Email">
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Telefon numaranız" asp-for="PhoneNumber">
+                                    </div>               
+                                </div>
+                             
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Şifreniz" asp-for="PasswordHash">
+                                </div>
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <label class="form-check-label text-muted">
+                                            <input type="checkbox" class="form-check-input">
+                                           @* <a id="acceptRules" href="#">*@Kuralları@*</a>*@ okudum kabul ediyorum.
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" >Kayıt Ol</button>
+                                </div>
+                                <div class="text-center mt-4 font-weight-light">
+                                    Zaten bir hesabın var mı?<a href="/Login/Index/" class="text-primary">Giriş Yap</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="~/MajesticAdmin-Free-Bootstrap-Admin-Template-master/template/vendors/base/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="~/MajesticAdmin-Free-Bootstrap-Admin-Template-master/template/js/off-canvas.js"></script>
+    <script src="~/MajesticAdmin-Free-Bootstrap-Admin-Template-master/template/js/hoverable-collapse.js"></script>
+    <script src="~/MajesticAdmin-Free-Bootstrap-Admin-Template-master/template/js/template.js"></script>
+    <!-- endinject -->
+
+@*      <script>
+        $('#acceptRules').click(function (){
+            swal({
+                title: "Site Kabul Şartları",
+                text:  "Sitemize kayıt sırasında verdiğiniz tüm bilgileriniz gizlilik çerçevesinde saklanmaktadır.",
+                button: "Tamam",
+            });
+        });
+    </script>*@
+@*
+    <script>
+     ////   $('input:checkbox').click(function(){
+     //       var checked = $("input:checked").length;
+     //       if(checked == 0){
+     //           if(confirm('Sitemizi kayıt sırasında verdiğiniz tüm bilgiler gizlilik çerçevesinde bizlerde yer alacaktır. Devam edeceğinizden emin misiniz?'))
+     //           {
+     //               (':checkbox:checked').removeAttr('checked');
+     //           } else
+     //           {
+     //               if(confirm('Kaldırmakta emin misiniz?'))
+     //               (':checkbox:checked').attr('checked');
+     //           }
+     //       }
+     //   });
+    </script>*@
+  
+</body>
+
+</html>

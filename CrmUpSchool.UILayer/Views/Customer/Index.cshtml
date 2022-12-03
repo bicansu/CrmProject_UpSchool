@@ -1,0 +1,9 @@
+﻿@using CrmUpSchool.EntityLayer.Concrete
+@model List<Customer>
+@{
+    Layout = null;
+}
+@foreach(var item in Model)
+{
+    <p>@item.CustomerName @item.CustomerSurname</p>
+}

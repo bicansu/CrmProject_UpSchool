@@ -1,0 +1,37 @@
+﻿@model Employee
+@{
+    ViewData["Title"] = "AddEmployee";
+    Layout = "~/Views/Shared/_CrmLayout.cshtml";
+}
+
+<h1>Yeni Personel Sayfası</h1>
+
+<form method="post">
+    <label>Personel Adı</label>
+    <input typle ="text" asp-for="EmployeeName" class="form-control" />
+    <span asp-validation-for="EmployeeName" class="text-danger"></span>
+    <br/>
+
+    <label>Personel Soyadı</label>
+    <input typle="text" asp-for="EmployeeSurname" class="form-control" />
+    <span asp-validation-for="EmployeeSurname" class="text-danger"></span>
+    <br />
+
+    <label>Personel Mail</label>
+    <input typle="text" asp-for="EmployeeMail" class="form-control" />
+    <span asp-validation-for="EmployeeMail" class="text-danger"></span>
+    <br />
+
+    <label>Personel Görsel</label>
+    <input typle="text" asp-for="EmployeeImage" class="form-control" />
+    <span asp-validation-for="EmployeeImage" class="text-danger"></span>
+    <br />
+
+    <label>Personel Departmanı</label>
+    @Html.DropDownListFor(x=>x.CategoryID,(List<SelectListItem>)ViewBag.v, new { @class = "form-control"})
+     <span asp-validation-for="CategoryID" class="text-danger"></span>
+    <br />
+
+    <button class="btn btn-info">Personeli Kaydet</button>
+
+</form>
