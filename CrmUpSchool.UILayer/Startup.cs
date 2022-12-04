@@ -4,7 +4,10 @@ using Crm.UpSchool.DataAccessLayer.EntityFramework;
 using CrmUpSchool.BusinessLayer.Abstract;
 using CrmUpSchool.BusinessLayer.Concrete;
 using CrmUpSchool.BusinessLayer.Contrete;
+using CrmUpSchool.DataAccessLayer.Abstract;
+using CrmUpSchool.DataAccessLayer.EntityFramework;
 using CrmUpSchool.EntityLayer.Concrete;
+using CrmUpSchool.UILayer.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,10 +35,15 @@ namespace CrmUpSchool.UILayer
         {
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICategoryDal, EFCategoryDal>();
+
             services.AddScoped<IEmployeeService, EmployeeManager>();
             services.AddScoped<IEmployeeDal, EFEmployeeDal>();
+
+            services.AddScoped<IEmployeeTaskService, EmployeeTaskManager>();
+            services.AddScoped<IEmployeeTaskDal, EFEmployeeTaskDal>();
+
             services.AddDbContext<Context>();
-            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>();
+            services.AddIdentity<AppUser, AppRole>().AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<Context>();
             services.AddControllersWithViews();
         }
 
@@ -66,6 +74,14 @@ namespace CrmUpSchool.UILayer
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                  name: "areas",
+                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
             });
         }
     }

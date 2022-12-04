@@ -27,4 +27,9 @@
     <ProjectReference Include="..\CrmUpSchool.EntityLayer\CrmUpSchool.EntityLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Employee\Data\" />
+    <Folder Include="Areas\Employee\Models\" />
+  </ItemGroup>
+
 </Project>
