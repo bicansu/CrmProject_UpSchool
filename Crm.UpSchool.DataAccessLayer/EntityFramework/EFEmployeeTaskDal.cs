@@ -22,5 +22,14 @@ namespace CrmUpSchool.DataAccessLayer.EntityFramework
               return values;
           }
         }
+
+        public List<EmployeeTask> GetEmployeeTasksById(int id)
+        {
+            using(var context = new Context ())
+            {
+                var values = context.EmployeeTasks.Where(x => x.AppUserID == id).ToList();
+                return values;
+            }
+        }
     }
 }

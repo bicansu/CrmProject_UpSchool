@@ -1,0 +1,23 @@
+﻿@model List<EmployeeTaskDetail>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+    int count = 0;
+}
+
+<h3>Görev Detayları</h3>
+
+<table>
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            @item.Description
+            <br />
+        </tr>
+
+    }
+
+</table>
+

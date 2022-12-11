@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace CrmUpSchool.BusinessLayer.Abstract
 {
-    public interface IEmployeeTaskService : IGenericService<EmployeeTask>
+    public interface IEmployeeTaskDetailService:IGenericService<EmployeeTaskDetail>
     {
-        List<EmployeeTask> TGetEmployeeTasksByEmployee();
-        List<EmployeeTask> TGetEmployeeTasksById(int id);
-
-    }
+        List<EmployeeTaskDetail> TGetEmployeeTaskDetailsById(int id);
+    } 
 }

@@ -4,14 +4,16 @@ using Crm.UpSchool.DataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CrmUpSchool.DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20221205184435_create_message_table")]
+    partial class create_message_table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -269,7 +271,7 @@ namespace CrmUpSchool.DataAccessLayer.Migrations
                     b.Property<string>("MessageSubject")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ReceiverEmail")
+                    b.Property<string>("REceiverEmail")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ReceiverName")

@@ -8,9 +8,7 @@ using System.Threading.Tasks;
 
 namespace CrmUpSchool.DataAccessLayer.Abstract
 {
-    public interface IEmployeeTaskDal:IGenericDal<EmployeeTask>
+    public interface IMessageDal :IGenericDal<Message>
     {
-        List<EmployeeTask> GetEmployeeTasksByEmployee();
-        List<EmployeeTask> GetEmployeeTasksById(int id);
     }
 }

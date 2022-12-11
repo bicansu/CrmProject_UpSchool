@@ -1,0 +1,32 @@
+﻿@model UserEditProfile
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+<form method="post" class="from-group" enctype="multipart/form-data">
+    <label>Adınız:</label>
+    <input type="text" asp-for="Name" class="form-control"/>
+    <br />
+    <label>Soyadınız:</label>
+    <input type="text" asp-for="Surname" class="form-control" />
+    <label>Email:</label>
+    <input type="email" asp-for="Email" class="form-control" required />
+    <br />
+    <label>Telefon numarası:</label>
+    <input type="text" asp-for="PhoneNumber" class="form-control" required />
+    <br />
+    <label>Şifre:</label>
+    <input type="password" asp-for="Password" class="form-control" required />
+    <br />
+    <label>Şifre Tekrarı:</label>
+    <input type="password" asp-for="ConfirmPassword" class="form-control" required />
+    <br />
+    <label>Resim Seçiniz:</label>
+    <input type="file" asp-for="Image" class="form-control" required />
+    <br />
+    <button class="btn btn-success">Kaydet</button>
+</form> 
+
