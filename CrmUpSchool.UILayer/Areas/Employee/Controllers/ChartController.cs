@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
-namespace CrmUpSchool.UILayer.Controllers
+namespace CrmUpSchool.UILayer.Areas.Employee.Controllers
 {
     [Area("Employee")]
     public class ChartController : Controller
@@ -20,7 +20,7 @@ namespace CrmUpSchool.UILayer.Controllers
                 DepartmantName = "Muhasebe",
                 SalaryAvg = 10000
             });
-          
+
 
             departmantSalaries.Add(new DepartmantSalary
             {
@@ -33,7 +33,7 @@ namespace CrmUpSchool.UILayer.Controllers
                 DepartmantName = "Satıs",
                 SalaryAvg = 20000
             });
-            return Json(new { jsonList = departmantSalaries});
+            return Json(new { jsonList = departmantSalaries });
         }
 
 
