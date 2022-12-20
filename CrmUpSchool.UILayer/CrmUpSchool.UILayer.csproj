@@ -30,6 +30,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Crm.UpSchool.DataAccessLayer\CrmUpSchool.DataAccessLayer.csproj" />
     <ProjectReference Include="..\CrmUpSchool.BusinessLayer\CrmUpSchool.BusinessLayer.csproj" />
+    <ProjectReference Include="..\CrmUpSchool.DTOLayer\CrmUpSchool.DTOLayer.csproj" />
     <ProjectReference Include="..\CrmUpSchool.EntityLayer\CrmUpSchool.EntityLayer.csproj" />
   </ItemGroup>
 

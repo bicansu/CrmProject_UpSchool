@@ -6,6 +6,7 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
+
 <h1>Müşteri Ajax İşlemleri</h1>
 <br />
 <button type="button" id="btncustomerlist" class="btn btn-outline-dark">Müşteri Listesi</button>
@@ -14,6 +15,9 @@
 <button type="button" id="btncustomerdelete" class="btn btn-outline-danger">Müşteri Sil</button>
 <button type="button" id="btncustomerupdate" class="btn btn-outline-warning">Müşteri Güncelle</button>
 <br />
+<button type="button" id="btnsweet" class="btn btn-outline-info">Sweet Buton</button>
+
+<br />
 <br />
 
 @*Ekleme işlemi için bir tasarım yapılacak*@
@@ -21,6 +25,7 @@
 
 </div>
 <br />
+
 <div class="form-group">
     <input type="text" id="txtcustomername" placeholder="Müşteri Adını Giriniz" class="form-control" />
     <br />
@@ -32,14 +37,38 @@
     <br />
 </div>
 
+<br />
+
 <div class="form-group">
     <input type="text" placeholder="Aranacak ID Değerini Giriniz" id="txtid" class="form-control" />
 </div>
 
 <br/>
 
+<div>
+    <input type="text" class="form-control" id="txtdeleteid" placeholder="Silinecek ID değerini giriniz" />
+
+</div>
+
 <div id="customergetbyid">
 
+</div>
+
+<br />
+
+<div class="form-group">
+    <h4>Güncelleme Paneli</h4>
+    <br />
+    <input type="text" class="form-control" id="txteditid" placeholder="Güncellenecek id" />
+    <br />
+    <input type="text" class="form-control" id="txtname" placeholder="Güncellenecek Adınız" />
+    <br />
+    <input type="text" class="form-control" id="txtsurname" placeholder="Güncellenecek Soyadınız" />
+    <br />
+    <input type="text" class="form-control" id="txtphone" placeholder="Güncellenecek Mailiniz" />
+    <br />
+    <input type="text" class="form-control" id="txtmail" placeholder="Güncellenecek Telefonunuz" />
+    <br />
 </div>
 
 <script>
@@ -101,6 +130,40 @@
                 let tablehtml2 = `<table class=table table-bordered > <tr><th>Müşteri ID < /th><th>Müşteri Adı</th > <th>Müşteri Soyadı < /th></tr > <tr><td>${ result.CustomerID } </td><td>${result.CustomerName}</td > <td>${ result.CustomerSurname } </td></tr > </table>`;
                 $("#customergetbyid").html(tablehtml2);
             }
+        });
+    });
+    
+    $("#btncustomerdelete").click(x => {
+        
+        let id = $("#txtdeleteid").val();
+        $.ajax({
+            url: "/Admin/AdminCustomer/DeleteCustomer/" + id,
+            type: "get",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(funk4){
+                alert("Müşteri Başarı Bir Şekilde Silindi");
+            }
+        });
+    });
+
+    $("#btncustomerupdate").click(function(){
+        let values= {
+            CustomerID: $("#txteditid").val(),
+            CustomerName: $("#txtname").val(),
+            CustomerSurname: $("#txtsurname").val(),
+            CustomerSurname: $("#txtsurname").val(),
+            CustomerPhone: $("#txtphone").val(),
+            CustomerMail: $("#txtmail").val(),
+        }
+    
+    $.ajax({
+        type: "get",
+        url: "/Admin/AdminCustomer/UpdateCustomer",
+        data: values,
+        success: function (funk5) {
+            alert("Güncelle İşlemi Yapıldı");
+        }
         });
     });
 </script>

@@ -2,7 +2,7 @@
 
 namespace CrmUpSchool.UILayer.Models
 {
-    public class RoleViewMoldel
+    public class RoleViewModel
     {
         [Required(ErrorMessage ="Lütfen rol adını boş geçmeyin")]
         public string RoleName { get; set; }

@@ -9,6 +9,7 @@ using CrmUpSchool.DataAccessLayer.Abstract;
 using CrmUpSchool.DataAccessLayer.EntityFramework;
 using CrmUpSchool.EntityLayer.Concrete;
 using CrmUpSchool.UILayer.Models;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,13 +37,18 @@ namespace CrmUpSchool.UILayer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Containerdepencies();
+            services.ContainerDepencies();
 
 
             services.AddDbContext<Context>();
             services.AddIdentity<AppUser, AppRole>().AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<Context>();
-            services.AddControllersWithViews();
+            
 
+            services.AddAutoMapper(typeof(Startup));
+
+            services.CustomizeValidator();
+
+            services.AddControllersWithViews().AddFluentValidation();
             services.AddMvc(config =>
             {
                 var policy = new AuthorizationPolicyBuilder()

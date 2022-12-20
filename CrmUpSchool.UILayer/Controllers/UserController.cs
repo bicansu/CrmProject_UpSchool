@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CrmUpSchool.UILayer.Controllers
 {
@@ -14,8 +15,9 @@ namespace CrmUpSchool.UILayer.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            ViewBag.Name = await _userManager.FindByNameAsync(User.Identity.Name);
             var values = _userManager.Users.ToList();
             return View(values);
         }

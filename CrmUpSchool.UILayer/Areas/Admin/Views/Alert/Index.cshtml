@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_CrmLayout.cshtml";
+}
+
+<br />
+<a href="~/lib/jquery/dist/jquery.min.map"></a>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+   
+<button id="btn1" style="display:inline-block; inline-size:150px">Button 1</button>
+<br />
+<button id="btn2" style="display:inline-block; inline-size:150px">Button 2</button>
+<script>
+    $("#btn1").click(function(){
+        swal("Hello world!");
+    });
+    $("#btn2").click(function () {
+       swal("Başarılı Ekleme!", "Tebrikler!", "success");
+    });
+</script>

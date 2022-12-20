@@ -1,10 +1,10 @@
-﻿@model AppUser
+﻿@model UserSignUpModel
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_CrmLayout.cshtml";
+    Layout = null;
 }
 
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -37,25 +37,35 @@
                             <h6 class="font-weight-light">Hemen birkaç adımda üyeliğini tamamla</h6>
                             <form class="pt-3" method="post">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Kullanıcı Adınız" asp-for="UserName">
+                                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Kullanıcı Adınız" asp-for="Username">
+                                    <span asp-validation-for="Username" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Adınız" asp-for="Name">
+                                    <span asp-validation-for="Name" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Soyadınız" asp-for="Surname">
+                                    <span asp-validation-for="Surname" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email" asp-for="Email">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Telefon numaranız" asp-for="PhoneNumber">
+                                        <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Telefon numaranız" asp-for="Phonenumber">
+                                        <span asp-validation-for="Phonenumber" class="text-danger"></span>
                                     </div>               
                                 </div>
                              
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Şifreniz" asp-for="PasswordHash">
+                                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Şifreniz" asp-for="Password">
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Şifreniz tekrar" asp-for="ConfirmPassword">
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                                 </div>
                                 <div class="mb-4">
                                     <div class="form-check">
@@ -71,6 +81,7 @@
                                 <div class="text-center mt-4 font-weight-light">
                                     Zaten bir hesabın var mı?<a href="/Login/Index/" class="text-primary">Giriş Yap</a>
                                 </div>
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             </form>
                         </div>
                     </div>
@@ -119,3 +130,4 @@
 </body>
 
 </html>
+

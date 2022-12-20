@@ -1,11 +1,18 @@
 ﻿using CrmUpSchool.EntityLayer.Concrete;
 using CrmUpSchool.UILayer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MimeKit;
+using System;
 using System.Threading.Tasks;
+using MailKit.Net.Smtp;
+
+
 
 namespace CrmUpSchool.UILayer.Controllers
 {
+    [AllowAnonymous]
     public class RegisterController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -15,31 +22,17 @@ namespace CrmUpSchool.UILayer.Controllers
             _userManager = userManager;
         }
 
+        
+
         [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
-
         [HttpPost]
-        public async Task<IActionResult> Index(AppUser appUser)
+        public async Task<IActionResult> Index(UserSignUpModel p)
         {
-            var result =await _userManager.CreateAsync(appUser, appUser.PasswordHash);
-            if(result.Succeeded)
-            {
-                return RedirectToAction("Index", "UserList");
-            }
-            return View();
-        }
-
-        [HttpGet]
-        public IActionResult Index2()
-        {
-            return View();
-        }
-        [HttpPost]
-        public async Task<IActionResult> Index2(UserSignUpModel p)
-        {
+         
             if (ModelState.IsValid)
             {
                 AppUser appUser = new AppUser()
@@ -48,14 +41,16 @@ namespace CrmUpSchool.UILayer.Controllers
                     Name = p.Name,
                     Surname = p.Surname,
                     Email = p.Email,
-                    PhoneNumber = p.Phonenumber
+                    PhoneNumber = p.Phonenumber,
+                    MailCode = new Random().Next(100000,999999).ToString()
                 };
                 if (p.Password == p.ConfirmPassword)
                 {
                     var result = await _userManager.CreateAsync(appUser, p.Password);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Index", "Login");
+                        SendEmail(appUser.MailCode);
+                        return RedirectToAction("EmailConfirmed", "Register");
                     }
                     else
                     {
@@ -73,6 +68,46 @@ namespace CrmUpSchool.UILayer.Controllers
             
             
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult EmailConfirmed()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> EmailConfirmed(AppUser appUser)
+        {
+            var user = await _userManager.FindByEmailAsync(appUser.Email);
+            if (user.MailCode == appUser.MailCode)
+            {
+                user.EmailConfirmed = true;
+                await _userManager.UpdateAsync(user);
+                return RedirectToAction("Index", "Login");
+            }
+            return View();
+        }
+        public void SendEmail(string emailcode)
+        {
+            MimeMessage mimeMessage = new MimeMessage();
+
+            MailboxAddress mailboxAddressFrom = new MailboxAddress("Admin", "melisasmbl.86@gmail.com");
+            mimeMessage.From.Add(mailboxAddressFrom); //Mailin kimden gönderildiği
+
+            MailboxAddress mailboxAddressTo = new MailboxAddress("User", "melisasmbl.86@gmail.com");
+            mimeMessage.To.Add(mailboxAddressTo); //Mailin kime gönderileceği
+
+            var bodyBuilder = new BodyBuilder();
+            bodyBuilder.TextBody = emailcode;
+            mimeMessage.Body = bodyBuilder.ToMessageBody(); //Gönderilecek mailin içeriği
+
+            mimeMessage.Subject = "Üyelik Kaydı"; //Gönderilecek mailin başlığı
+
+            SmtpClient smtp = new SmtpClient(); //SİMPLE MAİL TRANSFER PROTOCOL
+            smtp.Connect("smtp.gmail.com", 587, false);
+            smtp.Authenticate("melisasmbl.86@gmail.com", "eyyitgugaqqhfqck");
+            smtp.Send(mimeMessage);
+            smtp.Disconnect(true);
         }
     }
 }

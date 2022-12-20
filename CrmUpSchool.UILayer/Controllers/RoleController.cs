@@ -29,7 +29,7 @@ namespace CrmUpSchool.UILayer.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddRole(RoleViewMoldel model)
+        public async Task<IActionResult> AddRole(RoleViewModel model)
         {
             if (ModelState.IsValid)
             {
